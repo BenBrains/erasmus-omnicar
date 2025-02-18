@@ -31,7 +31,7 @@ const int motor4_in2 = 4;   // Purple
 const int motor4_ena = 2;   // White
 
 // Speed (0-255)
-int currentSpeed = 100;
+int currentSpeed = 254;
 
 void setup() {
   Serial.begin(115200);
@@ -203,6 +203,7 @@ void loop() {
     else if (action.equals("a")) moveLeft(currentSpeed);
     else if (action.equals("s")) moveBackward(currentSpeed);
     else if (action.equals("d")) moveRight(currentSpeed);
+
     // Diagonal
     else if (action.equals("aw")) moveDiagonalLeft(currentSpeed);
     else if (action.equals("dw")) moveDiagonalRight(currentSpeed);
@@ -224,7 +225,7 @@ void loop() {
     // Else
     else if (action.equals("0")) {
       stopMotors();
-      SerialBT.println("Hmmmm, oh dear, oh no no no, or fiddlesticks, it seems like we are not getting any input now");
+      SerialBT.println("Yes boss I have stopped the motors");
     } else {
       stopMotors();
       SerialBT.println("Hmmmm, oh dear, oh no no no, or fiddlesticks, it seems like we are not getting any input now");
