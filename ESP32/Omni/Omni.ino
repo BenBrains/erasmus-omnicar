@@ -23,15 +23,15 @@ const int motor2_ena = 18;  // White
 // Motor 3 (Back Left)
 const int motor3_in1 = 27;  // Violet
 const int motor3_in2 = 14;  // Gray
-const int motor3_ena = 12;  // Purple
+const int motor3_ena = 32;  // Purple
 
 // Motor 4 (Back Right)
 const int motor4_in1 = 13;  // Blue
 const int motor4_in2 = 4;   // Purple
-const int motor4_ena = 2;   // White
+const int motor4_ena = 23;   // White
 
 // Speed (0-255)
-int currentSpeed = 254;
+int currentSpeed = 250;
 
 void setup() {
   Serial.begin(115200);
@@ -187,13 +187,14 @@ void loop() {
   }
   if (SerialBT.available()) {
     String action = SerialBT.readStringUntil('~');
+    Serial.println(action);
 
     if (action.equals("minus")) {
       if (currentSpeed - 10 >= 80) currentSpeed -= 10;
       SerialBT.print("SUGON SUCKER THE SPEED CHANGED TO ");
       SerialBT.println(currentSpeed);
     } else if (action.equals("plus") || action.equals("equal")) {
-      if (currentSpeed + 10 >= 255) currentSpeed += 10;
+      if (currentSpeed + 10 <= 255) currentSpeed += 10;
       SerialBT.print("SUGON SUCKER THE SPEED CHANGED TO ");
       SerialBT.println(currentSpeed);
     }
